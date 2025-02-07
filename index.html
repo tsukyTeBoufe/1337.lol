@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝟳𝙣𝙯𝟬</title>
+    <style>
+        /* Style général de la page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Style de l'écran d'accueil */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        /* Style du message "Welcome User" */
+        #welcome-message {
+            font-size: 3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: welcomeGlow 2s infinite alternate, float 3s infinite ease-in-out;
+        }
+
+        /* Animation de glow pour le message */
+        @keyframes welcomeGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8); }
+            100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); }
+        }
+
+        /* Animation de flottement */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Style de la page principale (masquée au départ) */
+        #main-content {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style de la vidéo de fond */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Style du contenu principal */
+        .content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 80%;
+            text-align: center;
+            transform-style: preserve-3d; /* Active les transformations 3D */
+            transition: transform 0.1s ease-out; /* Transition fluide */
+        }
+
+        /* Conteneur pour le GIF et le titre */
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Style pour le GIF rond */
+        .title-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Style du titre */
+        h1 {
+            font-size: 3em;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Style du texte */
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                         0 0 20px rgba(255, 255, 255, 0.6), 
+                         0 0 30px rgba(255, 255, 255, 0.4);
+            animation: glow 2s infinite alternate;
+            font-style: italic;
+            line-height: 1.8em;
+        }
+
+        /* Animation de texte qui brille */
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+            100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+        }
+
+        /* Style des logos des réseaux sociaux */
+        .logos {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .logos img {
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+        }
+
+        .logos img:hover {
+            transform: scale(1.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Style du compteur de vues */
+        .view-counter {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            color: white;
+            font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        /* Style du bouton like */
+        .like-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .like-button:hover {
+            transform: scale(1.2);
+        }
+
+        .like-button.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Animation de confirmation du like */
+        @keyframes likeConfirmation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        .like-button.disabled {
+            animation: likeConfirmation 0.5s ease-in-out;
+        }
+
+        /* Style du compteur de likes */
+        .like-counter {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Écran d'accueil avec "Welcome User" -->
+    <div id="splash-screen">
+        <div id="welcome-message">𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗨𝘀𝗲𝗿</div>
+    </div>
+
+    <!-- Contenu principal (masqué au départ) -->
+    <div id="main-content">
+        <!-- Vidéo de fond -->
+        <video autoplay muted loop>
+            <source src="4K_-Grunge-Loop-Overlay.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+
+        <!-- Son en arrière-plan -->
+        <audio id="background-audio" loop>
+            <source src="caca.mp3" type="audio/mp3">
+            Votre navigateur ne supporte pas la lecture audio.
+        </audio>
+
+        <!-- Contenu central -->
+        <div class="content">
+            <!-- Bouton like -->
+            <div class="like-button" id="like-button">❤️</div>
+
+            <!-- Compteur de likes -->
+            <div class="like-counter" id="like-counter">0</div>
+
+            <!-- Titre avec GIF -->
+            <div class="title-container">
+                <img src="https://i.pinimg.com/originals/59/63/31/5963310096871e3c9639a3f72d3ca1fb.gif" alt="GIF animé">
+                <h1><strong>𝟳𝙣𝙯𝟬</strong></h1>
+            </div>
+
+            <!-- Citation -->
+            <p>
+                People walk around, act like they know what hate means. <br>
+                Nah, no one does, until you hate yourself. <br>
+                I mean truly hate yourself. <br>
+                That's power.
+            </p>
+
+            <!-- Logos des réseaux sociaux -->
+            <div class="logos">
+                <a href="https://www.youtube.com/@7nz0s" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/36/FFFFFF/youtube-play.png" alt="YouTube" title="YouTube">
+                </a>
+                <a href="https://www.roblox.com/users/3936243764/profile" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/36/FFFFFF/roblox.png" alt="Roblox" title="Roblox">
+                </a>
+                <a href="https://discord.com/users/1331352861619257345" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/36/FFFFFF/discord-logo.png" alt="Discord" title="Discord">
+                </a>
+                <!-- Logo Spotify -->
+                <a href="https://open.spotify.com/user/jl8llom2ehalqzarfh9i2l0ui?si=3523944003b5474b" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/36/FFFFFF/spotify--v1.png" alt="Spotify" title="Spotify">
+                </a>
+            </div>
+
+            <!-- Compteur de vues -->
+            <div class="view-counter">👁️ 0</div>
+        </div>
+    </div>
+
+    <script>
+        // Gestion de l'écran d'accueil
+        const splashScreen = document.getElementById('splash-screen');
+        const mainContent = document.getElementById('main-content');
+        const audio = document.getElementById('background-audio');
+
+        // Clic pour entrer
+        splashScreen.addEventListener('click', () => {
+            splashScreen.style.display = 'none'; // Masque l'écran d'accueil
+            mainContent.style.display = 'flex'; // Affiche le contenu principal
+
+            // Démarre la lecture audio après l'interaction utilisateur
+            audio.play().catch(error => {
+                console.error("La lecture audio a échoué :", error);
+            });
+        });
+
+        // Compteur de vues
+        let views = localStorage.getItem("page_views");
+
+        if (views === null) {
+            views = 1;
+        } else {
+            views = parseInt(views) + 1;
+        }
+
+        localStorage.setItem("page_views", views);
+        document.querySelector(".view-counter").textContent = `👁️ ${views}`;
+
+        // Gestion du bouton like
+        const likeButton = document.getElementById('like-button');
+        const likeCounter = document.getElementById('like-counter');
+        let likes = parseInt(localStorage.getItem('likes')) || 0; // Récupère les likes sauvegardés
+        likeCounter.textContent = likes;
+
+        likeButton.addEventListener('click', function() {
+            if (!likeButton.classList.contains('disabled')) {
+                likes++;
+                likeCounter.textContent = likes;
+                likeButton.classList.add('disabled');
+                localStorage.setItem('likes', likes); // Sauvegarde les likes
+            }
+        });
+
+        // Effet 3D amplifié au survol du cadre
+        const content = document.querySelector('.content');
+
+        content.addEventListener('mousemove', (event) => {
+            const rect = content.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left; // Position X de la souris dans le cadre
+            const offsetY = event.clientY - rect.top; // Position Y de la souris dans le cadre
+
+            // Calcul des rotations en fonction de la position de la souris
+            const rotateX = ((offsetY / rect.height) - 0.5) * 40; // Amplification de l'effet sur l'axe X
+            const rotateY = ((offsetX / rect.width) - 0.5) * -40; // Amplification de l'effet sur l'axe Y
+            const scale = 1.1; // Légère augmentation de la taille
+
+            // Application des transformations
+            content.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+        });
+
+        // Réinitialisation de l'effet 3D lorsque la souris quitte le cadre
+        content.addEventListener('mouseleave', () => {
+            content.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+    </script>
+</body>
+</html>
