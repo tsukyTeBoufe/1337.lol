@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𝟳𝙣𝙯𝟬</title>
     <style>
-        /* Style général de la page */
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
@@ -16,7 +16,7 @@
             overflow: hidden;
         }
 
-        /* Style de l'écran d'accueil */
+        
         #splash-screen {
             position: fixed;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1000;
         }
 
-        /* Style du message "Welcome User" */
+        
         #welcome-message {
             font-size: 3em;
             font-weight: bold;
@@ -41,7 +41,7 @@
             animation: welcomeGlow 2s infinite alternate, float 3s infinite ease-in-out;
         }
 
-        /* Animation de glow pour le message */
+        
         @keyframes welcomeGlow {
             0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); }
             50% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 0.8); }
@@ -55,7 +55,7 @@
             100% { transform: translateY(0); }
         }
 
-        /* Style de la page principale (masquée au départ) */
+        
         #main-content {
             display: none;
             position: fixed;
@@ -68,7 +68,7 @@
             align-items: center;
         }
 
-        /* Style de la vidéo de fond */
+        
         video {
             position: fixed;
             top: 0;
@@ -79,7 +79,7 @@
             z-index: -1;
         }
 
-        /* Style du contenu principal */
+        
         .content {
             background: rgba(0, 0, 0, 0.6);
             padding: 30px;
@@ -95,14 +95,14 @@
             transition: transform 0.1s ease-out; /* Transition fluide */
         }
 
-        /* Conteneur pour le GIF et le titre */
+        
         .title-container {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        /* Style pour le GIF rond */
+        
         .title-container img {
             width: 80px;
             height: 80px;
@@ -112,14 +112,14 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* Style du titre */
+        
         h1 {
             font-size: 3em;
             margin: 20px 0;
             font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Style du texte */
+        
         p {
             font-size: 1.2em;
             margin: 10px 0;
@@ -131,14 +131,14 @@
             line-height: 1.8em;
         }
 
-        /* Animation de texte qui brille */
+        
         @keyframes glow {
             0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
             50% { text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
             100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
         }
 
-        /* Style des logos des réseaux sociaux */
+        
         .logos {
             display: flex;
             gap: 20px;
@@ -157,7 +157,7 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        /* Style du compteur de vues */
+       
         .view-counter {
             position: absolute;
             left: 10px;
@@ -170,7 +170,7 @@
             z-index: 2;
         }
 
-        /* Style du bouton like */
+        
         .like-button {
             position: absolute;
             top: 10px;
@@ -191,7 +191,7 @@
             pointer-events: none;
         }
 
-        /* Animation de confirmation du like */
+        
         @keyframes likeConfirmation {
             0% { transform: scale(1); }
             50% { transform: scale(1.5); }
@@ -202,7 +202,7 @@
             animation: likeConfirmation 0.5s ease-in-out;
         }
 
-        /* Style du compteur de likes */
+        
         .like-counter {
             position: absolute;
             top: 10px;
@@ -215,7 +215,7 @@
             z-index: 2;
         }
 
-        /* Style de l'emoji "🫂" */
+        
         .friend-emoji {
             position: absolute;
             bottom: 10px;
@@ -230,7 +230,7 @@
             transform: scale(1.2);
         }
 
-        /* Style du message "friend bio" */
+        
         .friend-tooltip {
             position: absolute;
             bottom: 60px;
@@ -252,40 +252,40 @@
 </head>
 <body>
 
-    <!-- Écran d'accueil avec "Welcome User" -->
+    
     <div id="splash-screen">
         <div id="welcome-message">𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝗨𝘀𝗲𝗿</div>
     </div>
 
-    <!-- Contenu principal (masqué au départ) -->
+    
     <div id="main-content">
-        <!-- Vidéo de fond -->
+        
         <video autoplay muted loop>
             <source src="4K_-Grunge-Loop-Overlay.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
 
-        <!-- Son en arrière-plan -->
+        
         <audio id="background-audio" loop>
             <source src="caca.mp3" type="audio/mp3">
             Votre navigateur ne supporte pas la lecture audio.
         </audio>
 
-        <!-- Contenu central -->
+       
         <div class="content">
-            <!-- Bouton like -->
+            
             <div class="like-button" id="like-button">❤️</div>
 
-            <!-- Compteur de likes -->
+            
             <div class="like-counter" id="like-counter">0</div>
 
-            <!-- Titre avec GIF -->
+            
             <div class="title-container">
                 <img src="https://i.pinimg.com/originals/59/63/31/5963310096871e3c9639a3f72d3ca1fb.gif" alt="GIF animé">
                 <h1><strong>𝟳𝙣𝙯𝟬</strong></h1>
             </div>
 
-            <!-- Citation -->
+            
             <p>
                 People walk around, act like they know what hate means. <br>
                 Nah, no one does, until you hate yourself. <br>
@@ -293,7 +293,7 @@
                 That's power.
             </p>
 
-            <!-- Logos des réseaux sociaux -->
+            
             <div class="logos">
                 <a href="https://www.youtube.com/@7nz0s" target="_blank">
                     <img src="https://img.icons8.com/ios-filled/36/FFFFFF/youtube-play.png" alt="YouTube" title="YouTube">
@@ -304,39 +304,39 @@
                 <a href="https://discord.com/users/1331352861619257345" target="_blank">
                     <img src="https://img.icons8.com/ios-filled/36/FFFFFF/discord-logo.png" alt="Discord" title="Discord">
                 </a>
-                <!-- Logo Spotify -->
+                
                 <a href="https://open.spotify.com/user/jl8llom2ehalqzarfh9i2l0ui?si=3523944003b5474b" target="_blank">
                     <img src="https://img.icons8.com/ios-filled/36/FFFFFF/spotify--v1.png" alt="Spotify" title="Spotify">
                 </a>
             </div>
 
-            <!-- Compteur de vues -->
+            
             <div class="view-counter">👁️ 0</div>
 
-            <!-- Emoji "🫂" -->
+            
             <div class="friend-emoji" id="friend-emoji">🫂</div>
             <div class="friend-tooltip">friend bio</div>
         </div>
     </div>
 
     <script>
-        // Gestion de l'écran d'accueil
+        
         const splashScreen = document.getElementById('splash-screen');
         const mainContent = document.getElementById('main-content');
         const audio = document.getElementById('background-audio');
 
-        // Clic pour entrer
+       
         splashScreen.addEventListener('click', () => {
-            splashScreen.style.display = 'none'; // Masque l'écran d'accueil
-            mainContent.style.display = 'flex'; // Affiche le contenu principal
+            splashScreen.style.display = 'none'; 
+            mainContent.style.display = 'flex'; 
 
-            // Démarre la lecture audio après l'interaction utilisateur
+            
             audio.play().catch(error => {
                 console.error("La lecture audio a échoué :", error);
             });
         });
 
-        // Compteur de vues
+       
         let views = localStorage.getItem("page_views");
 
         if (views === null) {
@@ -348,7 +348,7 @@
         localStorage.setItem("page_views", views);
         document.querySelector(".view-counter").textContent = `👁️ ${views}`;
 
-        // Gestion du bouton like
+      
         const likeButton = document.getElementById('like-button');
         const likeCounter = document.getElementById('like-counter');
         let likes = parseInt(localStorage.getItem('likes')) || 0; // Récupère les likes sauvegardés
@@ -363,32 +363,32 @@
             }
         });
 
-        // Effet 3D amplifié au survol du cadre
+        
         const content = document.querySelector('.content');
 
         content.addEventListener('mousemove', (event) => {
             const rect = content.getBoundingClientRect();
-            const offsetX = event.clientX - rect.left; // Position X de la souris dans le cadre
-            const offsetY = event.clientY - rect.top; // Position Y de la souris dans le cadre
+            const offsetX = event.clientX - rect.left; 
+            const offsetY = event.clientY - rect.top; 
 
-            // Calcul des rotations en fonction de la position de la souris
-            const rotateX = ((offsetY / rect.height) - 0.5) * 40; // Amplification de l'effet sur l'axe X
-            const rotateY = ((offsetX / rect.width) - 0.5) * -40; // Amplification de l'effet sur l'axe Y
-            const scale = 1.1; // Légère augmentation de la taille
+            
+            const rotateX = ((offsetY / rect.height) - 0.5) * 40; 
+            const rotateY = ((offsetX / rect.width) - 0.5) * -40; 
+            const scale = 1.1; 
 
-            // Application des transformations
+            
             content.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
         });
 
-        // Réinitialisation de l'effet 3D lorsque la souris quitte le cadre
+        
         content.addEventListener('mouseleave', () => {
             content.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
         });
 
-        // Redirection lors du clic sur l'emoji "🫂"
+        
         const friendEmoji = document.getElementById('friend-emoji');
         friendEmoji.addEventListener('click', () => {
-            window.location.href = "https://fakegunsvishap.vercel.app/"; // Remplacez par l'URL souhaitée
+            window.location.href = "https://fakegunsvishap.vercel.app/";
         });
     </script>
 </body>
