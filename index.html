@@ -214,6 +214,40 @@
             border-radius: 5px;
             z-index: 2;
         }
+
+        /* Style de l'emoji "🫂" */
+        .friend-emoji {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .friend-emoji:hover {
+            transform: scale(1.2);
+        }
+
+        /* Style du message "friend bio" */
+        .friend-tooltip {
+            position: absolute;
+            bottom: 60px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .friend-emoji:hover + .friend-tooltip {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -278,6 +312,10 @@
 
             <!-- Compteur de vues -->
             <div class="view-counter">👁️ 0</div>
+
+            <!-- Emoji "🫂" -->
+            <div class="friend-emoji" id="friend-emoji">🫂</div>
+            <div class="friend-tooltip">friend bio</div>
         </div>
     </div>
 
@@ -345,6 +383,12 @@
         // Réinitialisation de l'effet 3D lorsque la souris quitte le cadre
         content.addEventListener('mouseleave', () => {
             content.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        });
+
+        // Redirection lors du clic sur l'emoji "🫂"
+        const friendEmoji = document.getElementById('friend-emoji');
+        friendEmoji.addEventListener('click', () => {
+            window.location.href = "https://fakegunsvishap.vercel.app/"; // Remplacez par l'URL souhaitée
         });
     </script>
 </body>
