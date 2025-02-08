@@ -91,8 +91,8 @@
             align-items: center;
             max-width: 80%;
             text-align: center;
-            transform-style: preserve-3d; /* Active les transformations 3D */
-            transition: transform 0.1s ease-out; /* Transition fluide */
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out; 
         }
 
         
@@ -351,7 +351,7 @@
       
         const likeButton = document.getElementById('like-button');
         const likeCounter = document.getElementById('like-counter');
-        let likes = parseInt(localStorage.getItem('likes')) || 0; // Récupère les likes sauvegardés
+        let likes = parseInt(localStorage.getItem('likes')) || 0; 
         likeCounter.textContent = likes;
 
         likeButton.addEventListener('click', function() {
@@ -359,7 +359,7 @@
                 likes++;
                 likeCounter.textContent = likes;
                 likeButton.classList.add('disabled');
-                localStorage.setItem('likes', likes); // Sauvegarde les likes
+                localStorage.setItem('likes', likes); 
             }
         });
 
